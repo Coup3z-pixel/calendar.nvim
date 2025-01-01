@@ -5,8 +5,10 @@ A nvim plugin with a calendar and note feature to manage notes and dates.
 # Progress
 
 ```mermaid
-graph TD;
-Development -> Initial Release;
+flowchart TD
+    A[Development] -->|Here as of now| B(Initial Release);
+    B --> C(Feedback)
+    C --> D(...)
 ```
 
 # Why

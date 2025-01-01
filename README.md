@@ -2,6 +2,14 @@
 
 A nvim plugin with a calendar and note feature to manage notes and dates.
 
+# Progress
+
+                 HERE
+                  │
+   ┌───────────┐  ▼   ┌───────────────┐
+   │Development│─────►│Initial Release│        ...
+   └───────────┘      └───────────────┘
+
 # Why
 
 A lot of people including myself have loved the feature rich environment of nvim so much that we want to daily drive it for

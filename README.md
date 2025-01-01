@@ -4,11 +4,10 @@ A nvim plugin with a calendar and note feature to manage notes and dates.
 
 # Progress
 
-                 HERE
-                  │
-   ┌───────────┐  ▼   ┌───────────────┐
-   │Development│─────►│Initial Release│        ...
-   └───────────┘      └───────────────┘
+```mermaid
+graph TD;
+Development -> Initial Release;
+```
 
 # Why
 

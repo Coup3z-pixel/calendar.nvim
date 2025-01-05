@@ -8,16 +8,16 @@ local int_to_str = function (num)
   end
 end
 
-local generate_calendar_row = function (dates) 
+local generate_calendar_row = function (dates)
   return {
-    "│        │         │           │          │        │          │        │",
     string.format(
-    "│ %s     │ %s      │ %s        │ %s       │ %s     │ %s       │ %s     │",
+    "│%s        │%s        │%s       │%s       │%s        │%s        │%s        │",
       int_to_str(dates[1]), int_to_str(dates[2]), int_to_str(dates[3]), int_to_str(dates[4]), int_to_str(dates[5]), int_to_str(dates[6]), int_to_str(dates[7])
     ),
-    "│        │         │           │          │        │          │        │",
-    "│        │         │           │          │        │          │        │",
-    "└────────┴─────────┴───────────┴──────────┴────────┴──────────┴────────┘"
+    "│          │          │         │         │          │          │          │",
+    "│          │          │         │         │          │          │          │",
+    "│          │          │         │         │          │          │          │",
+    "├──────────┼──────────┼─────────┼─────────┼──────────┼──────────┼──────────┤"
   }
 end
 
@@ -37,15 +37,6 @@ factory.generate_calendar = function ()
   local month = os.date("%m") -- Current month
 
   -- Construct a table representing the first day of the month
-  local last_month = {
-      year = year,
-      month = month,
-      day = 1,
-      hour = 0,
-      min = 0,
-      sec = 0,
-  }
-
   local first_day = {
       year = year,
       month = month,
@@ -67,7 +58,7 @@ factory.generate_calendar = function ()
   local first_day_timestamp = os.time(first_day)
   local first_day_of_the_week = tonumber(os.date("%w", first_day_timestamp))
 
-  local last_day_timestamp = os.time(last_month) - 86400
+  local last_day_timestamp = first_day_timestamp - 86400
   local last_day_of_the_month = tonumber(os.date("%d", last_day_timestamp))
 
   for j = first_day_of_the_week, 0, -1 do
@@ -89,9 +80,9 @@ factory.generate_calendar = function ()
   end
 
   local calendar = {
-    "------------------------------------------------------------------------",
-    "~ Sunday ~ Monday ~ Tuesday ~ Wednesday ~ Thursday ~ Friday ~ Saturday ~",
-    "------------------------------------------------------------------------"
+    "┌──────────────────────────────────────────────────────────────────────────┐",
+    "│  Sunday  │  Monday  │ Tuesday │Wednesday│ Thursday │  Friday  │ Saturday │",
+    "├──────────┬──────────┬─────────┬─────────┬──────────┬──────────┬──────────┤",
   }
 
   for i = 1, 6, 1 do

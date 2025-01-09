@@ -57,14 +57,15 @@ factory.generate_calendar = function ()
 
   local first_day_timestamp = os.time(first_day)
   local first_day_of_the_week = tonumber(os.date("%w", first_day_timestamp))
-
   local last_day_timestamp = first_day_timestamp - 86400
   local last_day_of_the_month = tonumber(os.date("%d", last_day_timestamp))
 
+  -- last days of prev month
   for j = first_day_of_the_week, 0, -1 do
     calendar_dates[1][j] = last_day_of_the_month - first_day_of_the_week + j
   end
 
+  -- first days of curr month
   for j = first_day_of_the_week+1, 7, 1 do
     calendar_dates[1][j] = j - first_day_of_the_week
   end

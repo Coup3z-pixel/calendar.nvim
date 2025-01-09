@@ -5,6 +5,16 @@ local wm = require("window")
 local view_factory = require("view")
 
 local start_calendar = function ()
+  if not file_manager.exists("journal/") then
+    file_manager.ensure_jounral_dir()
+  end
+
+  local curr_date = string.format("%s.%s.%s.md", os.date("%d"), os.date("%m"), os.date("%Y"))
+
+  if not file_manager.file_exists("./journal/" .. curr_date) then
+    file_manager.prewrite_date(curr_date)
+  end
+
   local window_height = 33
   local calendar_width = 76
 
@@ -27,11 +37,6 @@ local start_calendar = function ()
   vim.api.nvim_buf_set_lines(calendar_window.buf, 0, -1, false, view_factory.generate_calendar())
   vim.api.nvim_buf_set_lines(info_window.buf, 0, -1, false, {})
   vim.api.nvim_buf_call(info_window.buf, function ()
-    local curr_date = string.format("%s.%s.%s.md", os.date("%d"), os.date("%m"), os.date("%Y"))
-    if file_manager.file_exists("./journal/" .. curr_date) then
-      file_manager.prewrite_date()
-    end
-    file_manager.file_exists("./journal/" .. curr_date)
     vim.cmd("silent! edit " .. "./journal/" .. curr_date)
   end)
 end

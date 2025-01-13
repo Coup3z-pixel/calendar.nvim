@@ -27,3 +27,4 @@ If you know nvim plugins, `/lua` is the file with most of the logic that is run 
 - `file.lua` manages the files saving for the daily notes
 - `view.lua` creates the UI for the calendar
 - `window.lua` is the window manager for calendars and writing interfaces
+- `date.lua` is a file for managing and generate months and date comparison

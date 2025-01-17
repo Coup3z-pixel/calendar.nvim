@@ -54,17 +54,26 @@ function Change_info_buf()
 
   local month = date_factory.generate_month()
 
-  print(math.fmod(x-2, 12), y)
+
 
   if math.fmod(x, 11) == 0 then
     return
   end
 
   -- Associating cords to a date
-  local weekIndex = y / 11
-  local dayIndex = x / 12
+  local weekIndex = math.floor((y / 11)+0.5)
+  local dayIndex =math.floor((x / 12)+0.5)
 
+  -- TODO check for last month
   local date = string.format("%s.%s.%s.md", month[weekIndex][dayIndex], os.date("%m"), os.date("%Y"))
+
+  if not file_manager.file_exists("./journal/" .. date) then
+    file_manager.prewrite_date(date)
+  end
+
+  vim.api.nvim_buf_call(info_buf, function ()
+    vim.cmd("silent! edit " .. "./journal/" .. date)
+  end)
 end
 
 M.setup = function ()
